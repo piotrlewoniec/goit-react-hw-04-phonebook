@@ -3,7 +3,13 @@ import css from './ContactForm.module.css';
 import { Button } from '../button/Button';
 
 export const ContactForm = ({ addContact }) => (
-  <form name="contactform" autoComplete="on" method="POST" validate="true">
+  <form
+    name="contactform"
+    autoComplete="on"
+    method="POST"
+    validate="true"
+    onSubmit={addContact}
+  >
     <label className={css.inputlabel}>
       Name
       <input
@@ -32,10 +38,10 @@ export const ContactForm = ({ addContact }) => (
         required
       />
     </label>
-    <Button label="Add contact" action={addContact} formButton={true} />
+    <Button label="Add contact" formButton={true} />
   </form>
 );
-
+// action={addContact}
 ContactForm.propTypes = {
   addContact: PropTypes.func,
 };

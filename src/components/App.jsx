@@ -19,7 +19,6 @@ export const App = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    console.log('Mounting phase');
     if (localStorageLibraryName in localStorage) {
       const libraryLocal = localStorageLoad(localStorageLibraryName);
       setContacts([...libraryLocal]);
@@ -28,8 +27,8 @@ export const App = () => {
 
   const handleAddContact = evt => {
     evt.preventDefault();
-    const name = evt.target.form.name.value;
-    const number = evt.target.form.number.value;
+    const name = evt.target.elements.name.value;
+    const number = evt.target.elements.number.value;
     const id = nanoid();
     if (name !== '' && contacts.find(contact => contact.name === name)) {
       Notiflix.Notify.info('Contact allready exists');
@@ -65,7 +64,7 @@ export const App = () => {
     }
     const contactsLocal = [...contacts, { id: id, name: name, number: number }];
     setContacts([...contactsLocal]);
-    evt.target.form.reset();
+    evt.target.reset();
   };
 
   const handleDeleteContact = evt => {
